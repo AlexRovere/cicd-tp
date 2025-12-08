@@ -1,15 +1,13 @@
 name: CI
-on: [push, pull_request]
-  branches: 
-    - master
+on: 
+  push: 
+    branches: master
+  pull_request:
+    branches: master
 
 jobs: 
   init:
-    runs-on: 
-      - ubuntu-latest
-      - windows-latest
-      - macos-latest
-
+    runs-on: ubuntu-latest
     steps: 
       # checkout repo
       - uses: actions/checkout@v5
@@ -23,7 +21,7 @@ jobs:
       - run: npm ci 
 
       # lancer les tests unitaires
-      - run: npm tests
+      - run: npm test
 
       # lint le code
       - run: npm run lint
