@@ -1,6 +1,11 @@
 name: CI
-on: [push, pull_request]
-  branches: master
+on: 
+  push:
+    branches: 
+    - master
+  pull_request:
+    branches:
+    - master
 
 jobs: 
   setup:
@@ -18,14 +23,14 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
-      run: npm ci
+      - run: npm ci
 
   # lancer les tests unitaires
   test: 
     needs: dependencies
     runs-on: ubuntu-latest
     steps:
-      -run: npm test
+      - run: npm test
   
   # vérifier la qualité du code
   quality:
