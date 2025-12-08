@@ -21,7 +21,7 @@ jobs:
       - run: npm ci 
 
       # lancer les tests unitaires
-      - run: npm tests
+      - run: npm test
 
       # lint le code
       - run: npm run lint
