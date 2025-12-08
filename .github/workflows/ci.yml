@@ -1,12 +1,9 @@
 name: CI
-on: 
-  push: 
-    branches: master
-  pull_request:
-    branches: master
+on: [push, pull_request]
+  branches: master
 
 jobs: 
-  init:
+  setup:
     runs-on: ubuntu-latest
     steps: 
       # checkout repo
@@ -16,12 +13,23 @@ jobs:
       - uses: actions/setup-node@v6 
         with:
           node-version-file: ".nvmrc"
+  # installer les dépendances 
+  dependencies: 
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      run: npm ci
 
-      # installer les dépendances
-      - run: npm ci 
-
-      # lancer les tests unitaires
-      - run: npm test
-
-      # lint le code
+  # lancer les tests unitaires
+  test: 
+    needs: dependencies
+    runs-on: ubuntu-latest
+    steps:
+      -run: npm test
+  
+  # vérifier la qualité du code
+  quality:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
       - run: npm run lint
