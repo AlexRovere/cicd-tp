@@ -8,7 +8,7 @@ on:
     - master
 
 jobs: 
-  setup:
+  ci_pipeline: 
     runs-on: ubuntu-latest
     steps: 
       # checkout repo
@@ -18,23 +18,15 @@ jobs:
       - uses: actions/setup-node@v6 
         with:
           node-version-file: ".nvmrc"
-  # installer les dépendances 
-  dependencies: 
-    needs: setup
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm ci
+          
+      # installer les dépendances 
+      - name: Install Dependencies
+        run: npm ci
 
-  # lancer les tests unitaires
-  test: 
-    needs: dependencies
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm test
+      # lancer les tests unitaires
+      - name: Run Unit Tests
+        run: npm test
   
-  # vérifier la qualité du code
-  quality:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - run: npm run lint
+      # vérifier la qualité du code
+      - name: Run Linting / Quality Check
+        run: npm run lint
