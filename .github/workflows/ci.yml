@@ -37,7 +37,7 @@ jobs:
       # uploader les résultats des tests
       - name: Upload Test Results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results-${{ matrix.os }}
           path: test-results/
@@ -70,7 +70,7 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
     steps:
       - name: Download test results for ${{ matrix.os }}
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: test-results-${{ matrix.os }}
           path: test-results-${{ matrix.os }}
