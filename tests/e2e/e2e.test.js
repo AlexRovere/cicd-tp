@@ -1,5 +1,4 @@
 const { chromium } = require('playwright');
-const { getGreeting } = require('../../src/greeting');
 
 describe('End-to-End Tests', () => {
   let browser;
