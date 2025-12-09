@@ -22,3 +22,22 @@ describe("E2E GET /hello", () => {
     expect(res.data).toBe("Hello world!");
   });
 });
+
+describe("E2E GET /hello/:name", () => {
+  it("responds with personalized greeting", async () => {
+    const res = await axios.get(`${baseURL}/hello/Alice`);
+    expect(res.status).toBe(200);
+    expect(res.data).toBe("Hello Alice!");
+  });
+});
+
+describe("E2E GET /nonexistent", () => {
+  it("responds with 404", async () => {
+    try {
+      await axios.get(`${baseURL}/nonexistent`);
+      throw new Error("Request should have failed");
+    } catch (err) {
+      expect(err.response.status).toBe(404);
+    }
+  });
+});
