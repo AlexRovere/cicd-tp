@@ -74,6 +74,8 @@ jobs:
         with:
           name: test-results-${{ matrix.os }}
           path: test-results-${{ matrix.os }}
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
       - name: Publish Test Report for ${{ matrix.os }}
         uses: dorny/test-reporter@v1
