@@ -26,6 +26,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      # installer les navigateurs Playwright
+      - name: Install Playwright Browsers
+        run: npx playwright install
+
       # lancer les tests unitaires
       - name: Run Unit Tests
         run: npm test
@@ -33,3 +37,16 @@ jobs:
       # vérifier la qualité du code
       - name: Run Linting / Quality Check
         run: npm run lint
+
+      # Send notif in teams
+      - name: Notify Teams
+        uses: jdcargile/ms-teams-notification@v1.4
+        with:
+          github-token: ${{ github.token }}
+          ms-teams-webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
+          notification-summary: CI UPDATE !
+          notification-color: 17a2b8
+          timezone: America/Denver
+          verbose-logging: true
+
+ 
