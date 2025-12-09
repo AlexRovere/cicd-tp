@@ -27,6 +27,10 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      # ensure jest-junit is available even if package-lock is out of sync
+      - name: Install jest-junit (if missing)
+        run: npm install --no-save jest-junit
+
       # installer les navigateurs Playwright
       - name: Install Playwright Browsers
         run: npx playwright install
