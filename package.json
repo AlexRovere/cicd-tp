@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "node src/server.js",
     "test:allure": "jest && npm run allure:generate",
-    "allure:generate": "allure generate allure-results -o allure-report --clean",
+    "allure:generate": "allure generate --clean allure-results -o allure-report",
     "allure:open": "allure open allure-report"
   },
   "dependencies": {
