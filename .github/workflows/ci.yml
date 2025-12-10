@@ -94,4 +94,3 @@ jobs:
           allure_report: allure-report 
           gh_pages: true
           report_name: Allure Test Report
-          github_token: ${{ secrets.GITHUB_TOKEN }}
