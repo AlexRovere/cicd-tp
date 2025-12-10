@@ -80,6 +80,9 @@ jobs:
         with:
           name: test-results
 
+      - name: Install Allure
+        run: npm i -g allure
+
       - name: Generate Allure Report
         run: |
-          npm allure:generate
+          allure generate allure-results -o allure-report --clean
