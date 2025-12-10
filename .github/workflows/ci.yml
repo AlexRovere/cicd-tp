@@ -90,7 +90,9 @@ jobs:
       - name: Generate and Publish Allure Report
         uses: simple-elf/allure-report-action@v1.13
         with:
-          results_paths: allure-results 
-          github_token: ${{ secrets.GITHUB_TOKEN }} 
+          with:
+          allure_results: allure-results 
+          allure_report: allure-report 
+          gh_pages: true
           report_name: Allure Test Report
-          clean_before_build: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
