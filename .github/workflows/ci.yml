@@ -66,3 +66,20 @@ jobs:
           path: 'test-results/junit.xml'
           reporter: 'java-junit'
           fail-on-error: false
+  
+  allure-report:
+    needs: test
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Download Allure Results
+        uses: actions/download-artifact@v4
+        with:
+          name: test-results
+
+      - name: Generate Allure Report
+        run: |
+          npm allure:generate

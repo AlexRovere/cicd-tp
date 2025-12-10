@@ -1,5 +1,7 @@
 module.exports = {
-  testEnvironment: 'node',
+  testEnvironment: "allure-jest/node",
+  testRunner: 'jest-circus/runner',
+
   reporters: [
     'default',
     [
@@ -12,14 +14,10 @@ module.exports = {
         classNameTemplate: '{classname}',
         titleTemplate: '{title}',
       },
-    ],
-    [
-      'jest-html-reporters',
-      { publicPath: 'test-results', filename: 'report.html' },
-    ],
+    ]
   ],
   collectCoverageFrom: [
     'src/**/*.js',
-    '!src/**/*.test.js',
+    '!src/**/*.test.js'
   ],
 };
