@@ -85,4 +85,4 @@ jobs:
 
       - name: Generate Allure Report
         run: |
-          allure generate allure-results -o allure-report --clean
+          allure generate --clean allure-results -o allure-report
